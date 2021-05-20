@@ -9,12 +9,14 @@ Created on Thu May 20 14:42:04 2021
 import os
 
 from flask import Flask
+from flask_restful import Api
 from dotenv import load_dotenv
 
 from database.db import initialize_db
-from resources.movie import movies
+from resources.routes import initialize_routes
 
 app = Flask(__name__)
+api = Api(app)
 
 # take environment variables from .env
 load_dotenv()
@@ -28,7 +30,7 @@ app.config['MONGODB_SETTINGS'] = {
 }
 
 # registering blueprints
-app.register_blueprint(movies)
+initialize_routes(api)
 
 # connect to database
 initialize_db(app)
