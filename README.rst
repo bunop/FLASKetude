@@ -13,9 +13,31 @@ In order to install (and execute) this repository, you require:
 
 * `Anaconda <https://www.anaconda.com/products/individual>`__
 * `Poetry <https://python-poetry.org/>`__
+* `Docker <https://www.docker.com/>`__ and `Docker Compose <https://docs.docker.com/compose/>`__
 
 Install
 -------
+
+Start a MongoDB instance
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Create an ``.env`` file in this project directory in which define those variables::
+
+  MONGODB_ROOT_USER=root
+  MONGODB_ROOT_PASS=<password>
+  MONGOEXPRESS_USER=flask
+  MONGOEXPRESS_PASS=<another password>
+
+Next start *MongoDB* using ``docker-compose``::
+
+  $ docker-compose up -d
+
+In order to connect to your local *MongoDB* docker instance::
+
+  $ docker-compose run --rm --user mongodb mongo sh -c 'mongo --host mongo --username="${MONGO_INITDB_ROOT_USERNAME}" --password="${MONGO_INITDB_ROOT_PASSWORD}"'
+
+Install python requirements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You need to install required packages in a new conda environment::
 
