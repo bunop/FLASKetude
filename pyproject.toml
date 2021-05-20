@@ -6,6 +6,7 @@ authors = ["Paolo Cozzi <bunop@libero.it>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+Flask = "^2.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
