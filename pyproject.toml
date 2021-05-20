@@ -8,6 +8,7 @@ authors = ["Paolo Cozzi <bunop@libero.it>"]
 python = "^3.9"
 Flask = "^2.0.0"
 ipython = "^7.23.1"
+flask-mongoengine = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
