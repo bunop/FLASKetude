@@ -29,6 +29,7 @@ Create an ``.env`` file in this project directory in which define those variable
   MONGOEXPRESS_PASS=<password>
   APP_USER=flask
   APP_PASS=<password>
+  JWT_SECRET_KEY=<secret key>
 
 Next start *MongoDB* using ``docker-compose``::
 

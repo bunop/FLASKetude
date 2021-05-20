@@ -11,6 +11,7 @@ import os
 from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_restful import Api
+from flask_jwt_extended import JWTManager
 from dotenv import load_dotenv
 
 from database.db import initialize_db
@@ -20,6 +21,7 @@ from resources.routes import initialize_routes
 app = Flask(__name__)
 api = Api(app)
 bcrypt = Bcrypt(app)
+jwt = JWTManager(app)
 
 # take environment variables from .env
 load_dotenv()
@@ -31,6 +33,9 @@ app.config['MONGODB_SETTINGS'] = {
     'password': os.getenv('APP_PASS'),
     'authentication_source': 'admin'
 }
+
+# https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
+app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 
 # registering blueprints
 initialize_routes(api)
