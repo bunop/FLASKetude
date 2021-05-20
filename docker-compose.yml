@@ -23,10 +23,6 @@ services:
         source: ./mongodb-data
         target: /data/db
 
-      - type: bind
-        source: ./mongodb-home
-        target: /home/mongodb
-
     networks:
       - default
 

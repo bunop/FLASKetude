@@ -26,15 +26,22 @@ Create an ``.env`` file in this project directory in which define those variable
   MONGODB_ROOT_USER=root
   MONGODB_ROOT_PASS=<password>
   MONGOEXPRESS_USER=flask
-  MONGOEXPRESS_PASS=<another password>
+  MONGOEXPRESS_PASS=<password>
+  APP_USER=flask
+  APP_PASS=<password>
 
 Next start *MongoDB* using ``docker-compose``::
 
   $ docker-compose up -d
 
-In order to connect to your local *MongoDB* docker instance::
+In order to connect to your local *MongoDB* docker instance and create user::
 
   $ docker-compose run --rm --user mongodb mongo sh -c 'mongo --host mongo --username="${MONGO_INITDB_ROOT_USERNAME}" --password="${MONGO_INITDB_ROOT_PASSWORD}"'
+
+Create a user for ``movie-bag`` database with ``readWrite`` permissions::
+
+  use admin
+  db.createUser({user: "flask", pwd: "<password>", roles: [{role: "readWrite", db: "movie-bag"}]})
 
 Install python requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
