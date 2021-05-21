@@ -18,6 +18,7 @@ from dotenv import load_dotenv
 from database.db import initialize_db
 from resources.routes import initialize_routes
 from resources.errors import errors
+from services.mail_service import initialize_mail_service
 
 # initialize stuff
 app = Flask(__name__)
@@ -45,6 +46,9 @@ initialize_routes(api)
 
 # connect to database
 initialize_db(app)
+
+# initialize mail services
+initialize_mail_service(app, mail)
 
 if __name__ == '__main__':
     app.run()
