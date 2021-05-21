@@ -16,10 +16,11 @@ from dotenv import load_dotenv
 
 from database.db import initialize_db
 from resources.routes import initialize_routes
+from resources.errors import errors
 
 # initialize stuff
 app = Flask(__name__)
-api = Api(app)
+api = Api(app, errors=errors)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
 
