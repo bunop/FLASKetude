@@ -69,7 +69,7 @@ class ResetPassword(Resource):
             if not reset_token or not password:
                 raise SchemaValidationError
 
-            user_id = decode_token(reset_token)['identity']
+            user_id = decode_token(reset_token)['sub']
 
             user = User.objects.get(id=user_id)
 
