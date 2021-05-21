@@ -48,6 +48,7 @@ Create a user for ``movie-bag`` database with ``readWrite`` permissions::
 
   use admin
   db.createUser({user: "flask", pwd: "<password>", roles: [{role: "readWrite", db: "movie-bag"}]})
+  db.grantRolesToUser("flask", [{role: "readWrite", db: "movie-bag-test"}])
 
 Install python requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

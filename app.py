@@ -50,12 +50,12 @@ app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
 # registering blueprints
 initialize_routes(api)
 
-# connect to database
-initialize_db(app)
-
 # initialize mail services
 mail.init_app(app)
 initialize_mail_service(app, mail)
 
 if __name__ == '__main__':
+    # connect to database
+    initialize_db(app)
+
     app.run()
