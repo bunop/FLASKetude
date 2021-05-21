@@ -26,6 +26,7 @@ def send_async_email(app, msg):
     with app.app_context():
         try:
             MAIL.send(msg)
+
         except ConnectionRefusedError:
             raise InternalServerError("[MAIL SERVER] not working")
 

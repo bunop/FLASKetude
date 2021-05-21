@@ -25,7 +25,7 @@ app = Flask(__name__)
 api = Api(app, errors=errors)
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
-mail = Mail(app)
+mail = Mail()
 
 # take environment variables from .env
 load_dotenv()
@@ -41,6 +41,12 @@ app.config['MONGODB_SETTINGS'] = {
 # https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 
+# https://pythonhosted.org/Flask-Mail/#configuring-flask-mail
+app.config["MAIL_SERVER"] = os.getenv('MAIL_SERVER')
+app.config["MAIL_PORT"] = os.getenv("MAIL_PORT")
+app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME")
+app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
+
 # registering blueprints
 initialize_routes(api)
 
@@ -48,6 +54,7 @@ initialize_routes(api)
 initialize_db(app)
 
 # initialize mail services
+mail.init_app(app)
 initialize_mail_service(app, mail)
 
 if __name__ == '__main__':

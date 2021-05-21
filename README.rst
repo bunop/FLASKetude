@@ -30,6 +30,11 @@ Create an ``.env`` file in this project directory in which define those variable
   APP_USER=flask
   APP_PASS=<password>
   JWT_SECRET_KEY=<secret key>
+  MAIL_SERVER=localhost
+  MAIL_PORT=1025
+  MAIL_USERNAME=support@movie-bag.com
+  MAIL_PASSWORD=
+
 
 Next start *MongoDB* using ``docker-compose``::
 
@@ -52,3 +57,14 @@ You need to install required packages in a new conda environment::
   $ conda env create -f environment.yml
   $ conda activate FLASKetude
   $ poetry install
+
+Running
+-------
+
+Start a test smptd service::
+
+  $ python -m smtpd -n -c DebuggingServer localhost:1025
+
+Start the application with::
+
+  $ python app.py
